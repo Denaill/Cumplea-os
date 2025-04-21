@@ -88,7 +88,7 @@
         }
 
       	.btn {
-                background: #d7263d;
+                background: #d3ab9e;
                 color: white;
                 font-size: 18px;
                 padding: 10px;
@@ -132,8 +132,8 @@
                 position: absolute;
                 top: 10px;
                 right: 10px;
-                background: #d7263d;
-                color: white;
+                background: #d3ab9e;
+                color: black;
                 font-size: 24px;
                 width: 40px;
                 height: 40px;
@@ -171,12 +171,7 @@
                 overflow: hidden;
                 width: 100%;
                 border-radius: 10px;
-                box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-            }
-
-            .carousel img {
-                width: 100%;
-                transition: transform 0.5s ease-in-out;
+                box-shadow: 0px 4px 10px #d3ab9e;
             }
 
             /* Botones de navegación */
@@ -184,8 +179,8 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                background: rgba(215, 38, 61, 0.8);
-                color: white;
+                background: rgba(#d3ab9e, 0.8);
+                color: black;
                 font-size: 24px;
                 border: none;
                 border-radius: 50%;
@@ -198,7 +193,7 @@
             }
 
             .btn-carousel:hover {
-                background: rgba(187, 31, 45, 0.9);
+                background: #d3ab9e;
             }
 
             .prev {
@@ -227,6 +222,14 @@
                 animation: fadeOutZoom 0.5s ease-in-out;
             }
 
+            #imgfinal {
+    max-width: 100%; /* Asegura que la imagen no exceda el tamaño del contenedor */
+    max-height: 300px; /* Limita la altura de la imagen para que no cubra toda la pantalla */
+    object-fit: contain; /* Ajusta la imagen sin recortarla */
+    border-radius: 10px; /* Bordes redondeados para una mejor estética */
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2); /* Le da un efecto elegante */
+}
+
     </style>
 </head>
 <body>
@@ -234,7 +237,9 @@
     <!-- Inicio -->
     <div class="panel">
         <h1>¡Feliz Cumpleaños!</h1>
-        <p>Mensaje de cumpleaños</p>
+        <p>Hoy es un día especial, porque celebramos la existencia de la persona más maravillosa que he tenido la suerte de conocer. Desde el momento en que entraste en mi vida, cada día ha sido más hermoso y significativo.
+Quiero recordarte cuánto te amo, cuánto valoro cada sonrisa, cada abrazo, cada instante a tu lado. Eres mi refugio, mi alegría, el amor que ilumina mis días. Espero que este nuevo año de vida esté lleno de felicidad, de sueños cumplidos y de momentos inolvidables.
+</p>
         <img src="https://cdn.pixabay.com/animation/2024/11/24/18/19/18-19-56-25_512.gif" alt="gif-cumpleanos" class="gif-cumple">
         <div class="photo-space">
             <button class="btn" onclick="abrirModal()"> Abreme </button>
@@ -278,11 +283,26 @@
         </div>
     </div>
 
+    <!-- Modal con mensaje -->
+    <div id="modalExtra" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModalExtra()">✖</span>
+            <img src="fotofinal.jpg" id="imgfinal">
+            <h2>🎉 ¡Feliz cumpleaños! 🎉</h2>
+            <p>Más que celebrar tu cumpleaños, celebro la dicha de poder caminar contigo, de compartir nuestra historia, de saber que tengo a mi lado a la persona más especial. Deseo que podamos seguir construyendo recuerdos juntos, que el tiempo nos regale muchos más años de amor y felicidad.
+Feliz cumpleaños, mi amor. Gracias por existir, por ser quien eres, por hacer mi vida infinitamente mejor.
+Siempre contigo, siempre para ti.
+</p>
+        </div>
+    </div>
+
     <!-- Espacio -->
     <div class="espaciador"></div>
 
     <!-- Confeti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.0.1"></script>
+
+    <!-- Scripts para carrusel y imagenes -->
     <script>
         let index = 0;
         const imagenes = document.querySelectorAll(".carousel img");
@@ -320,13 +340,27 @@
         function cerrarModal() {
             const modal = document.getElementById("modal");
             modal.classList.add("fade-out");
+
             setTimeout(() => {
                 modal.style.display = "none";
-                modal.classList.remove("fade-out"); // Reiniciar animación
-            }, 500); // Esperar el tiempo de la animación antes de ocultarlo
+                modal.classList.remove("fade-out");
+
+                // Abrir el nuevo modal después de cerrar el carrusel
+                document.getElementById("modalExtra").style.display = "block";
+            }, 500);
         }
-        // Automáticamente cambiar imagen cada 2 segundos
-        setInterval(siguienteFoto, 2000);
+
+        function cerrarModalExtra() {
+           const modal = document.getElementById("modalExtra");
+           modal.classList.add("fade-out");
+           setTimeout(() => {
+               modal.style.display = "none";
+               modal.classList.remove("fade-out"); // Reiniciar animación
+           }, 500); // Esperar el tiempo de la animación antes de ocultarlo
+       }
+
+        // Automáticamente cambiar imagen cada 5 segundos
+        setInterval(siguienteFoto, 5000);
 
         // Confeti apenas abre pagina
         window.onload = function() {
