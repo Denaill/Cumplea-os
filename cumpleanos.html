@@ -60,6 +60,9 @@
          padding: 20px;
          border-radius: 10px;
          display: flex;
+         text-align: justify;
+         line-height: 1.4;
+         margin: 10px 20px;
          flex-direction: column;
          align-items: center;
          max-height: 70vh; /* Limita la altura del contenido */
@@ -293,7 +296,7 @@
          <div class="modal-content">
             <span class="close" onclick="cerrarModalExtra()">✖</span>
             <img src="fotofinal.jpg" id="imgfinal">
-            <h2>🎉 ¡Feliz cumpleaños! 🎉</h2>
+            <h1>¡Feliz cumpleaños!</h1>
             <p>Más que celebrar tu cumpleaños, celebro la dicha de poder caminar contigo, de compartir nuestra historia, de saber que tengo a mi lado a la persona más especial. Deseo que podamos seguir construyendo recuerdos juntos, que el tiempo nos regale muchos más años de amor y felicidad.
                Feliz cumpleaños, mi amor. Gracias por existir, por ser quien eres, por hacer mi vida infinitamente mejor.
                Siempre contigo, siempre para ti.
@@ -354,11 +357,17 @@
 
          function cerrarModalExtra() {
             const modal = document.getElementById("modalExtra");
+            const panel = document.querySelector(".panel");
             modal.classList.add("fade-out");
             setTimeout(() => {
                 modal.style.display = "none";
                 modal.classList.remove("fade-out"); // Reiniciar animación
             }, 500); // Esperar el tiempo de la animación antes de ocultarlo
+            panel.innerHTML = `
+               <h1> Te amo infinitamente </h1>
+               <p> Espero te encante lo que encontraras en la caja </p>
+               <img src="https://media.tenor.com/td4iad0wsJgAAAAi/fofo-cute.gif" alt="gif-cumpleanos" class="gif-cumple">
+            `
          }
 
          // Automáticamente cambiar imagen cada 5 segundos
