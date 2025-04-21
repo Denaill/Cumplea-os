@@ -1,390 +1,373 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <link rel="icon" type="image/png" href="icono.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Cumpleaños</title>
-    <style>
-        body {
-            background: linear-gradient(to bottom, #ebd8d0, #ebd8d0);
-            text-align: center;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            display: flex;
-            justify-content: center; /* Centra horizontalmente */
-            align-items: center; /* Centra verticalmente */
-            min-height: 100vh; /* Hace que ocupe toda la pantalla */
-            background: linear-gradient(to bottom, #ebd8d0, #ebd8d0);
-            text-align: center;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            margin: 0;
-        }
-        .panel {
-            background: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-            max-width: 600px;
-            width: 90%;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        h1 {
-            color: #d3ab9e;
-            font-size: 28px;
-        }
-        .panel p {
-            text-align: justify;
-            line-height: 1.6;
-            margin: 10px 20px;
-        }
-
-        #modalExtra {
-          display: none;
-          position: fixed;
-          z-index: 2;
-          left: 50%;
-          top: 50%;
-        }
-
-        #modalExtra .modal-content p {
-            text-align: justify;
-            line-height: 1.6;
-            margin: 10px 20px;
-        }
-        p {
-            font-size: 18px;
-            color: #555;
-        }
-        .gif-cumple {
-            width: 400px;
-            animation: floatgif-cumple 3s infinite alternate ease-in-out;
-        }
-        .photo-space {
-            margin-top: 10px;
-            padding: 10px;
-            border: 2px dashed #eac9c1;
-            border-radius: 10px;
-            color: eac9c1;
-        }
-
-        .photo-space img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px; /* Bordes redondeados para mejor estética */
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes floatgif-cumple {
-            from { transform: rotate(-5deg); }
-            to { transform: rotate(5deg); }
-        }
-
-        .espaciador {
-            height: 20px; /* Tamaño del espacio */
-        }
-
-        /* Diseño adaptable */
-        @media (max-width: 600px) {
-            .panel {
-                width: 90%;
-                padding: 15px;
-            }
-            h1 {
-                font-size: 24px;
-            }
-            p {
-                font-size: 16px;
-            }
-            .gif-cumple {
-                width : 250px;
-            }
-        }
-
-      	.btn {
-                background: #d3ab9e;
-                color: white;
-                font-size: 18px;
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background 0.3s ease-in-out;
-            }
-
-            .btn:hover {
-                background: #bb1f2d;
-            }
-
-            /* Modal centrado */
-            .modal {
-                display: none;
-                position: fixed;
-                z-index: 2;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                width: 90%;
-                max-width: 350px;
-                background: rgba(0, 0, 0, 0.7);
-                text-align: center;
-                padding: 30px;
-                border-radius: 15px;
-            }
-
-            .modal-content {
-                background: white;
-                padding: 20px;
-                border-radius: 10px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            /* Botón de cierre bonito */
-            .close {
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                background: #d3ab9e;
-                color: black;
-                font-size: 24px;
-                width: 40px;
-                height: 40px;
-                line-height: 40px;
-                text-align: center;
-                border-radius: 50%;
-                cursor: pointer;
-                transition: all 0.3s ease-in-out;
-                box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-            }
-
-            .close:hover {
-                background: #bb1f2d;
-                transform: scale(1.1);
-            }
-
-            /* Carrusel ajustado */
-            .carousel-container {
-                position: relative;
-                width: 90%;
-                max-width: 300px;
-                margin: auto;
-            }
-
-            .carousel img {
-                width: 100%;
-                height: 450px;
-                aspect-ratio: 16 / 9; /* Mantiene un formato estándar sin deformación */
-                object-fit: cover; /* Ajusta la imagen para que se recorte sin distorsionarse */
-                border-radius: 10px;
-            }
-
-            .carousel {
-                display: flex;
-                overflow: hidden;
-                width: 100%;
-                border-radius: 10px;
-                box-shadow: 0px 4px 10px #d3ab9e;
-            }
-
-            /* Botones de navegación */
-            .btn-carousel {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background: rgba(#d3ab9e, 0.8);
-                color: black;
-                font-size: 24px;
-                border: none;
-                border-radius: 50%;
-                width: 50px;
-                height: 50px;
-                cursor: pointer;
-                box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-                transition: 0.3s ease-in-out;
-                z-index: 10;
-            }
-
-            .btn-carousel:hover {
-                background: #d3ab9e;
-            }
-
-            .prev {
-                left: -60px;
-            }
-
-            .next {
-                right: -60px;
-            }
-
-            @keyframes fadeInZoom {
-                from { opacity: 0; transform: scale(0.8); }
-                to { opacity: 1; transform: scale(1); }
-            }
-
-            @keyframes fadeOutZoom {
-                from { opacity: 1; transform: scale(1); }
-                to { opacity: 0; transform: scale(0.8); }
-            }
-
-            .modal-content {
-                animation: fadeInZoom 0.5s ease-in-out;
-            }
-
-            .modal.fade-out .modal-content {
-                animation: fadeOutZoom 0.5s ease-in-out;
-            }
-
-            #imgfinal {
-    max-width: 100%; /* Asegura que la imagen no exceda el tamaño del contenedor */
-    max-height: 300px; /* Limita la altura de la imagen para que no cubra toda la pantalla */
-    object-fit: contain; /* Ajusta la imagen sin recortarla */
-    border-radius: 10px; /* Bordes redondeados para una mejor estética */
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.2); /* Le da un efecto elegante */
-}
-
-    </style>
-</head>
-<body>
-
-    <!-- Inicio -->
-    <div class="panel">
-        <h1>¡Feliz Cumpleaños!</h1>
-        <p>Hoy es un día especial, porque celebramos la existencia de la persona más maravillosa que he tenido la suerte de conocer. Desde el momento en que entraste en mi vida, cada día ha sido más hermoso y significativo.
-Quiero recordarte cuánto te amo, cuánto valoro cada sonrisa, cada abrazo, cada instante a tu lado. Eres mi refugio, mi alegría, el amor que ilumina mis días. Espero que este nuevo año de vida esté lleno de felicidad, de sueños cumplidos y de momentos inolvidables.
-</p>
-        <img src="https://cdn.pixabay.com/animation/2024/11/24/18/19/18-19-56-25_512.gif" alt="gif-cumpleanos" class="gif-cumple">
-        <div class="photo-space">
+   <head>
+      <link rel="icon" type="image/png" href="icono.png">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Feliz Cumpleaños</title>
+      <style>
+         body {
+         background: linear-gradient(to bottom, #ebd8d0, #ebd8d0);
+         text-align: center;
+         font-family: Arial, sans-serif;
+         padding: 20px;
+         display: flex;
+         justify-content: center; /* Centra horizontalmente */
+         align-items: center; /* Centra verticalmente */
+         min-height: 100vh; /* Hace que ocupe toda la pantalla */
+         background: linear-gradient(to bottom, #ebd8d0, #ebd8d0);
+         text-align: center;
+         font-family: Arial, sans-serif;
+         padding: 20px;
+         margin: 0;
+         }
+         .panel {
+         background: #fff;
+         padding: 20px;
+         border-radius: 15px;
+         box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+         max-width: 600px;
+         width: 90%;
+         animation: fadeIn 1.5s ease-in-out;
+         }
+         h1 {
+         color: #d3ab9e;
+         font-size: 28px;
+         }
+         .panel p {
+         text-align: justify;
+         line-height: 1.6;
+         margin: 10px 20px;
+         }
+         #modalExtra {
+         display: none;
+         position: fixed;
+         z-index: 2;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         width: 90%;
+         max-width: 400px;
+         max-height: 80vh; /* Limita la altura del modal */
+         overflow: hidden; /* Oculta el desbordamiento del modal */
+         background: rgba(0, 0, 0, 0.7);
+         text-align: center;
+         padding: 30px;
+         border-radius: 15px;
+         }
+         #modalExtra .modal-content {
+         background: white;
+         padding: 20px;
+         border-radius: 10px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         max-height: 70vh; /* Limita la altura del contenido */
+         overflow-y: auto; /* Activa el scroll interno cuando el contenido es largo */
+         }
+         p {
+         font-size: 18px;
+         color: #555;
+         }
+         .gif-cumple {
+         width: 400px;
+         animation: floatgif-cumple 3s infinite alternate ease-in-out;
+         }
+         .photo-space {
+         margin-top: 10px;
+         padding: 10px;
+         border: 2px dashed #eac9c1;
+         border-radius: 10px;
+         color: eac9c1;
+         }
+         .photo-space img {
+         max-width: 100%;
+         height: auto;
+         border-radius: 10px; /* Bordes redondeados para mejor estética */
+         box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+         }
+         @keyframes fadeIn {
+         from { opacity: 0; transform: translateY(-20px); }
+         to { opacity: 1; transform: translateY(0); }
+         }
+         @keyframes floatgif-cumple {
+         from { transform: rotate(-5deg); }
+         to { transform: rotate(5deg); }
+         }
+         .espaciador {
+         height: 20px; /* Tamaño del espacio */
+         }
+         /* Diseño adaptable */
+         @media (max-width: 600px) {
+         .panel {
+         width: 90%;
+         padding: 15px;
+         }
+         h1 {
+         font-size: 24px;
+         }
+         p {
+         font-size: 16px;
+         }
+         .gif-cumple {
+         width : 250px;
+         }
+         }
+         .btn {
+         background: #d3ab9e;
+         color: white;
+         font-size: 18px;
+         padding: 10px;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         transition: background 0.3s ease-in-out;
+         }
+         .btn:hover {
+         background: #eac9c1;
+         }
+         /* Modal centrado */
+         .modal {
+         display: none;
+         position: fixed;
+         z-index: 2;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         width: 90%;
+         max-width: 350px;
+         background: rgba(0, 0, 0, 0.7);
+         text-align: center;
+         padding: 30px;
+         border-radius: 15px;
+         }
+         .modal-content {
+         background: white;
+         padding: 20px;
+         border-radius: 10px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         }
+         /* Botón de cierre bonito */
+         .close {
+         position: absolute;
+         top: 10px;
+         right: 10px;
+         background: #d3ab9e;
+         color: black;
+         font-size: 24px;
+         width: 40px;
+         height: 40px;
+         line-height: 40px;
+         text-align: center;
+         border-radius: 50%;
+         cursor: pointer;
+         transition: all 0.3s ease-in-out;
+         box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+         }
+         .close:hover {
+         background: #eac9c1;
+         transform: scale(1.1);
+         }
+         /* Carrusel ajustado */
+         .carousel-container {
+         position: relative;
+         width: 90%;
+         max-width: 300px;
+         margin: auto;
+         }
+         .carousel img {
+         width: 100%;
+         height: 450px;
+         aspect-ratio: 16 / 9; /* Mantiene un formato estándar sin deformación */
+         object-fit: cover; /* Ajusta la imagen para que se recorte sin distorsionarse */
+         border-radius: 10px;
+         }
+         .carousel {
+         display: flex;
+         overflow: hidden;
+         width: 100%;
+         border-radius: 10px;
+         box-shadow: 0px 4px 10px #d3ab9e;
+         }
+         /* Botones de navegación */
+         .btn-carousel {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         background: rgba(#d3ab9e, 0.8);
+         color: black;
+         font-size: 24px;
+         border: none;
+         border-radius: 50%;
+         width: 50px;
+         height: 50px;
+         cursor: pointer;
+         box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+         transition: 0.3s ease-in-out;
+         z-index: 10;
+         }
+         .btn-carousel:hover {
+         background: #d3ab9e;
+         }
+         .prev {
+         left: -60px;
+         }
+         .next {
+         right: -60px;
+         }
+         @keyframes fadeInZoom {
+         from { opacity: 0; transform: scale(0.8); }
+         to { opacity: 1; transform: scale(1); }
+         }
+         @keyframes fadeOutZoom {
+         from { opacity: 1; transform: scale(1); }
+         to { opacity: 0; transform: scale(0.8); }
+         }
+         .modal-content {
+         animation: fadeInZoom 0.5s ease-in-out;
+         }
+         .modal.fade-out .modal-content {
+         animation: fadeOutZoom 0.5s ease-in-out;
+         }
+         #imgfinal {
+         max-width: 100%; /* Asegura que la imagen no exceda el tamaño del contenedor */
+         max-height: 300px; /* Limita la altura de la imagen para que no cubra toda la pantalla */
+         object-fit: contain; /* Ajusta la imagen sin recortarla */
+         border-radius: 10px; /* Bordes redondeados para una mejor estética */
+         box-shadow: 0px 4px 10px rgba(0,0,0,0.2); /* Le da un efecto elegante */
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Inicio -->
+      <div class="panel">
+         <h1>¡Feliz Cumpleaños!</h1>
+         <p>Hoy es un día especial, porque celebramos la existencia de la persona más maravillosa que he tenido la suerte de conocer. Desde el momento en que entraste en mi vida, cada día ha sido más hermoso y significativo.
+            Quiero recordarte cuánto te amo, cuánto valoro cada sonrisa, cada abrazo, cada instante a tu lado. Eres mi refugio, mi alegría, el amor que ilumina mis días. Espero que este nuevo año de vida esté lleno de felicidad, de sueños cumplidos y de momentos inolvidables.
+         </p>
+         <img src="https://cdn.pixabay.com/animation/2024/11/24/18/19/18-19-56-25_512.gif" alt="gif-cumpleanos" class="gif-cumple">
+         <div class="photo-space">
             <button class="btn" onclick="abrirModal()"> Abreme </button>
-        </div>
-    </div>
-
-    <!-- Modal con carrusel -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
+         </div>
+      </div>
+      <!-- Modal con carrusel -->
+      <div id="modal" class="modal">
+         <div class="modal-content">
             <span class="close" onclick="cerrarModal()">✖</span>
             <div class="carousel-container">
-                <button class="btn-carousel prev" onclick="anteriorFoto()">⬅</button>
-                <div class="carousel">
-                    <img src="foto1.jpg" id="img1">
-                    <img src="foto2.jpg" id="img2">
-                    <img src="foto3.jpg" id="img3">
-                    <img src="foto4.jpg" id="img4">
-                    <img src="foto5.jpg" id="img5">
-                    <img src="foto6.jpg" id="img6">
-                    <img src="foto7.jpg" id="img7">
-                    <img src="foto8.jpg" id="img8">
-                    <img src="foto9.jpg" id="img9">
-                    <img src="foto10.jpg" id="img10">
-                    <img src="foto11.jpg" id="img11">
-                    <img src="foto12.jpg" id="img12">
-                    <img src="foto13.jpg" id="img13">
-                    <img src="foto14.jpg" id="img14">
-                    <img src="foto15.jpg" id="img15">
-                    <img src="foto16.jpg" id="img16">
-                    <img src="foto17.jpg" id="img17">
-                    <img src="foto18.jpg" id="img18">
-                    <img src="foto19.jpg" id="img19">
-                    <img src="foto20.jpg" id="img20">
-                    <img src="foto21.jpg" id="img21">
-                    <img src="foto22.jpg" id="img22">
-                    <img src="foto23.jpg" id="img23">
-                    <img src="foto24.jpg" id="img24">
-                </div>
-              <button class="btn-carousel next" onclick="siguienteFoto()">➡</button>
+               <button class="btn-carousel prev" onclick="anteriorFoto()">⬅</button>
+               <div class="carousel">
+                  <img src="foto1.jpg" id="img1">
+                  <img src="foto2.jpg" id="img2">
+                  <img src="foto3.jpg" id="img3">
+                  <img src="foto4.jpg" id="img4">
+                  <img src="foto5.jpg" id="img5">
+                  <img src="foto6.jpg" id="img6">
+                  <img src="foto7.jpg" id="img7">
+                  <img src="foto8.jpg" id="img8">
+                  <img src="foto9.jpg" id="img9">
+                  <img src="foto10.jpg" id="img10">
+                  <img src="foto11.jpg" id="img11">
+                  <img src="foto12.jpg" id="img12">
+                  <img src="foto13.jpg" id="img13">
+                  <img src="foto14.jpg" id="img14">
+                  <img src="foto15.jpg" id="img15">
+                  <img src="foto16.jpg" id="img16">
+                  <img src="foto17.jpg" id="img17">
+                  <img src="foto18.jpg" id="img18">
+                  <img src="foto19.jpg" id="img19">
+                  <img src="foto20.jpg" id="img20">
+                  <img src="foto21.jpg" id="img21">
+                  <img src="foto22.jpg" id="img22">
+                  <img src="foto23.jpg" id="img23">
+                  <img src="foto24.jpg" id="img24">
+               </div>
+               <button class="btn-carousel next" onclick="siguienteFoto()">➡</button>
             </div>
-        </div>
-    </div>
-
-    <!-- Modal con mensaje -->
-    <div id="modalExtra" class="modal">
-        <div class="modal-content">
+         </div>
+      </div>
+      <!-- Modal con mensaje -->
+      <div id="modalExtra" class="modal">
+         <div class="modal-content">
             <span class="close" onclick="cerrarModalExtra()">✖</span>
             <img src="fotofinal.jpg" id="imgfinal">
             <h2>🎉 ¡Feliz cumpleaños! 🎉</h2>
             <p>Más que celebrar tu cumpleaños, celebro la dicha de poder caminar contigo, de compartir nuestra historia, de saber que tengo a mi lado a la persona más especial. Deseo que podamos seguir construyendo recuerdos juntos, que el tiempo nos regale muchos más años de amor y felicidad.
-Feliz cumpleaños, mi amor. Gracias por existir, por ser quien eres, por hacer mi vida infinitamente mejor.
-Siempre contigo, siempre para ti.
-</p>
-        </div>
-    </div>
+               Feliz cumpleaños, mi amor. Gracias por existir, por ser quien eres, por hacer mi vida infinitamente mejor.
+               Siempre contigo, siempre para ti.
+            </p>
+         </div>
+      </div>
+      <!-- Espacio -->
+      <div class="espaciador"></div>
+      <!-- Confeti -->
+      <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.0.1"></script>
+      <!-- Scripts para carrusel y imagenes -->
+      <script>
+         let index = 0;
+         const imagenes = document.querySelectorAll(".carousel img");
 
-    <!-- Espacio -->
-    <div class="espaciador"></div>
+         function siguienteFoto() {
+             index = (index + 1) % imagenes.length;
+             actualizarCarrusel();
+         }
 
-    <!-- Confeti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.0.1"></script>
+         function anteriorFoto() {
+             index = (index - 1 + imagenes.length) % imagenes.length;
+             actualizarCarrusel();
+         }
 
-    <!-- Scripts para carrusel y imagenes -->
-    <script>
-        let index = 0;
-        const imagenes = document.querySelectorAll(".carousel img");
+         function actualizarCarrusel() {
+             imagenes.forEach((img, i) => {
+                 img.style.transform = `translateX(-${index * 100}%)`;
+             });
+         }
 
-        function siguienteFoto() {
-            index = (index + 1) % imagenes.length;
-            actualizarCarrusel();
-        }
+         function lanzarConfeti() {
+             confetti({
+                 particleCount: 200,
+                 spread: 70,
+                 origin: { y: 0.6 }
+             });
+         }
 
-        function anteriorFoto() {
-            index = (index - 1 + imagenes.length) % imagenes.length;
-            actualizarCarrusel();
-        }
+         function abrirModal() {
+             const modal = document.getElementById("modal");
+             modal.classList.remove("fade-out");
+             modal.style.display = "block";
+         }
 
-        function actualizarCarrusel() {
-            imagenes.forEach((img, i) => {
-                img.style.transform = `translateX(-${index * 100}%)`;
-            });
-        }
+         function cerrarModal() {
+             const modal = document.getElementById("modal");
+             modal.classList.add("fade-out");
 
-        function lanzarConfeti() {
-            confetti({
-                particleCount: 200,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-        }
+             setTimeout(() => {
+                 modal.style.display = "none";
+                 modal.classList.remove("fade-out");
 
-        function abrirModal() {
-            const modal = document.getElementById("modal");
-            modal.classList.remove("fade-out");
-            modal.style.display = "block";
-        }
+                 // Abrir el nuevo modal después de cerrar el carrusel
+                 document.getElementById("modalExtra").style.display = "block";
+             }, 500);
+         }
 
-        function cerrarModal() {
-            const modal = document.getElementById("modal");
+         function cerrarModalExtra() {
+            const modal = document.getElementById("modalExtra");
             modal.classList.add("fade-out");
-
             setTimeout(() => {
                 modal.style.display = "none";
-                modal.classList.remove("fade-out");
+                modal.classList.remove("fade-out"); // Reiniciar animación
+            }, 500); // Esperar el tiempo de la animación antes de ocultarlo
+         }
 
-                // Abrir el nuevo modal después de cerrar el carrusel
-                document.getElementById("modalExtra").style.display = "block";
-            }, 500);
-        }
+         // Automáticamente cambiar imagen cada 5 segundos
+         setInterval(siguienteFoto, 5000);
 
-        function cerrarModalExtra() {
-           const modal = document.getElementById("modalExtra");
-           modal.classList.add("fade-out");
-           setTimeout(() => {
-               modal.style.display = "none";
-               modal.classList.remove("fade-out"); // Reiniciar animación
-           }, 500); // Esperar el tiempo de la animación antes de ocultarlo
-       }
-
-        // Automáticamente cambiar imagen cada 5 segundos
-        setInterval(siguienteFoto, 5000);
-
-        // Confeti apenas abre pagina
-        window.onload = function() {
-            lanzarConfeti();
-        };
-    </script>
-</body>
+         // Confeti apenas abre pagina
+         window.onload = function() {
+             lanzarConfeti();
+         };
+      </script>
+   </body>
 </html>
